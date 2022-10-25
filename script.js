@@ -33,6 +33,35 @@ const items = JSON.parse(localStorage.getItem("items")) || [];
 
 
 
+
+
+/* TRAVAIL SUR LES ÉVÉNEMENTS EN JS
+
+Un événement en JavaScript est représenté par un nom ( click , mousemove ...) et une fonction que l'on nomme une callback . Un événement est par défaut propagé, c'est-à-dire que si nous n'indiquons pas à l'événement que nous le traitons, il sera transmis à l'élément parent, et ainsi de suite jusqu'à l'élément racine.
+ L'utilisateur clique avec la souris sur un certain élément ou en place le curseur sur un certain élément.
+
+*/
+const btnDelete = document.querySelectorAll('.deleteButton');
+
+
+function deleteItem(e) {
+    const btnClicked = e.target;
+     console.log(btnClicked);
+
+    if (btnClicked.classList[0] === "deleteButton") {
+    const effacer = btnClicked.parentElement;
+     effacer.remove();
+    }
+    else if (btnClicked.classList[0] === "doneButton") {
+        const deleted = btnClicked.parentElement.firstElementChild;
+         deleted.classList.toggle("doneButtonA");
+         
+        }
+}
+// Appel de la fonction
+taskList.addEventListener('click', deleteItem);
+
+
 //c) On va mettre les tâches dans un tableau (le ul) puis le premier enfant [0].value va vérifier qu'on reçoit bien le premier item (la première tâche) 
 // ajouter au form un addEventlistener
 
@@ -88,34 +117,5 @@ addTasks.addEventListener("submit", handleAddItem);
 addItemList(items, taskList);
 
 // Je vais placer les événements sur mes bouttons
-
-
-/* TRAVAIL SUR LES ÉVÉNEMENTS EN JS
-
-Un événement en JavaScript est représenté par un nom ( click , mousemove ...) et une fonction que l'on nomme une callback . Un événement est par défaut propagé, c'est-à-dire que si nous n'indiquons pas à l'événement que nous le traitons, il sera transmis à l'élément parent, et ainsi de suite jusqu'à l'élément racine.
- L'utilisateur clique avec la souris sur un certain élément ou en place le curseur sur un certain élément.
-
-*/
-const btnDelete = document.querySelectorAll('.deleteButton');
-
-
-function deleteItem(e) {
-    const btnClicked = e.target;
-     console.log(btnClicked);
-
-    if (btnClicked.classList[0] === "deleteButton") {
-    const effacer = btnClicked.parentElement;
-     effacer.remove();
-    }
-    else if (btnClicked.classList[0] === "doneButton") {
-        const deleted = btnClicked.parentElement.firstElementChild;
-         deleted.classList.toggle("doneButtonA");
-         
-        }
-}
-// Appel de la fonction
-taskList.addEventListener('click', deleteItem);
-
-
 
 
